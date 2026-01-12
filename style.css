@@ -1,0 +1,273 @@
+/* Background */
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.matrix-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.matrix-pattern {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.matrix-column {
+    position: absolute;
+    top: -100%;
+    width: 20px;
+    height: 100%;
+    font-size: 20px;
+    line-height: 18px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: fall linear infinite;
+}
+
+.matrix-column .matrix-text {
+    writing-mode: vertical-lr;
+    letter-spacing: 1px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    background: linear-gradient(0deg,
+            rgb(245, 164, 164),
+            rgb(207, 185, 142),
+            rgb(225, 225, 145),
+            rgb(160, 212, 160),
+            rgb(148, 148, 220),
+            rgb(181, 146, 205),
+            rgb(231, 170, 231));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+
+    background-size: 100% 200%;
+    animation: rainbowShift 10s linear infinite;
+}
+
+.matrix-column:nth-child(odd) {
+    animation-duration: 10s;
+}
+
+.matrix-column:nth-child(even) {
+    animation-duration: 15s;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateY(200%);
+        opacity: 0.5;
+    }
+}
+
+@keyframes rainbowShift {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 0 100%;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .matrix-column {
+        font-size: 15px;
+        line-height: 16px;
+        width: 18px;
+    }
+}
+
+/* Volume */
+.container {
+    --size: 30px;
+    cursor: pointer;
+    font-size: var(--size);
+    user-select: none;
+    fill: var(--color);
+}
+
+.container .mute {
+    fill: #f5a0a0;
+    position: absolute;
+    display: none;
+    animation: keyframes-fill .5s;
+}
+
+.container .voice {
+    fill: #eff5a0;
+    position: absolute;
+    animation: keyframes-fill .5s;
+}
+
+.container input:checked~.mute {
+    display: block;
+}
+
+.container input:checked~.voice {
+    display: none;
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+@keyframes keyframes-fill {
+    0% {
+        transform: rotate(0deg) scale(0);
+        opacity: 0;
+    }
+
+    50% {
+        transform: rotate(-10deg) scale(1.2);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        --size: 25px;
+        font-size: var(--size);
+
+    }
+}
+
+/* Mail */
+.tooltip-container {
+    height: 100px;
+    width: 150px;
+    border-radius: 5px;
+    background-color: #fff;
+    background-image: linear-gradient(to left bottom,
+            #f2f5f8,
+            #ecf1f2,
+            #e7eceb,
+            #e3e7e4,
+            #e1e2de);
+    border: 1px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.151);
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.tooltip-container::before {
+    position: absolute;
+    content: "";
+    top: -50%;
+    clip-path: polygon(50% 0, 0 100%, 100% 100%);
+    border-radius: 5px;
+    background-color: fff;
+    background-image: linear-gradient(to left bottom,
+            #f2f5f8,
+            #e4eaec,
+            #d8dfde,
+            #cdd3cf,
+            #c5c7c1);
+    width: 100%;
+    height: 50%;
+    transform-style: preserve-3d;
+    transform: perspective(1000px) rotateX(-150deg) translateY(-110%);
+    transition: transform 0.3s ease;
+}
+
+.tooltip-container .text {
+    color: rgb(32, 30, 30);
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.tooltip {
+    position: absolute;
+    top: -50px;
+    opacity: 0;
+    background: linear-gradient(-90deg, rgba(0, 0, 0, 0.05) 1px, white 1px),
+        linear-gradient(rgba(0, 0, 0, 0.05) 1px, white 1px),
+        linear-gradient(-90deg, rgba(0, 0, 0, 0.04) 1px, white 1px),
+        linear-gradient(rgba(0, 0, 0, 0.04) 1px, white 1px),
+        linear-gradient(white 3px, #f2f2f2 3px, #f2f2f2 78px, white 78px),
+        linear-gradient(-90deg, #aaa 1px, white 1px),
+        linear-gradient(-90deg, white 3px, #f2f2f2 3px, #f2f2f2 78px, white 78px),
+        linear-gradient(#aaa 1px, white 1px), #f2f2f2;
+    background-size:
+        4px 4px,
+        4px 4px,
+        80px 80px,
+        80px 80px,
+        80px 80px,
+        80px 80px,
+        80px 80px,
+        80px 80px;
+    padding: 5px 10px;
+    border: 1px solid rgb(206, 204, 204);
+    height: 100px;
+    width: 150px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition-duration: 0.2s;
+    pointer-events: none;
+    letter-spacing: 0.5px;
+    font-size: 18px;
+    font-weight: 600;
+    text-shadow: 10px salmon;
+}
+
+.tooltip-container:hover {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.tooltip-container:hover::before {
+    transform: rotateY(0);
+    background-image: none;
+    background-color: white;
+}
+
+.tooltip-container:hover .tooltip {
+    top: -150px;
+    opacity: 1;
+    transition-duration: 0.3s;
+}
+
+/* Fade out */
+.fade-out {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+/* Fade in */
+.fade-in {
+    opacity: 1;
+    transition: opacity 1s ease;
+}
