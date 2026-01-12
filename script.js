@@ -80,7 +80,7 @@ tooltipContainer.addEventListener('click', () => {
 
         tooltipContainer.style.display = 'none';
 
-    }, 2000);
+    }, 3000);
 });
 
 /* Fireworks Effect */
