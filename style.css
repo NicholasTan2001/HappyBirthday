@@ -110,6 +110,7 @@ body {
     font-size: var(--size);
     user-select: none;
     fill: var(--color);
+    display: none;
 }
 
 .container .mute {
@@ -276,7 +277,6 @@ body {
         transform: rotateX(-15deg) translateY(0px);
     }
 }
-
 
 /* Fade out */
 .fade-out {

@@ -51,6 +51,7 @@ volumeToggle.addEventListener('change', function () {
 /* Mail Controller */
 const tooltipContainer = document.querySelector('.tooltip-container');
 const matrixContainer = document.querySelector('.matrix-container');
+const volumeContainer = document.querySelector('.container');
 
 tooltipContainer.addEventListener('click', () => {
 
@@ -64,9 +65,13 @@ tooltipContainer.addEventListener('click', () => {
 
     matrixContainer.style.display = 'block';
 
+    volumeContainer.style.display = 'block';
+
     setTimeout(() => {
 
         matrixContainer.classList.add('fade-in');
+
+        volumeContainer.classList.add('fade-in');
 
     }, 1000);
 
@@ -83,7 +88,7 @@ function createFireworks() {
     const fireworks = document.querySelector('.fireworks');
     fireworks.innerHTML = '';
 
-    for (let i = 0; i < 300; i++) {
+    for (let i = 0; i < 150; i++) {
         const spark = document.createElement('div');
         spark.classList.add('spark');
 
@@ -97,7 +102,6 @@ function createFireworks() {
         fireworks.appendChild(spark);
     }
 
-    // Remove after animation (once)
     setTimeout(() => {
         fireworks.innerHTML = '';
     }, 1000);
