@@ -110,6 +110,7 @@ body {
     font-size: var(--size);
     user-select: none;
     fill: var(--color);
+    opacity: 0;
     display: none;
 }
 
@@ -318,4 +319,11 @@ body {
         transform: translate(var(--x), var(--y)) scale(0);
         opacity: 0;
     }
+}
+
+/* Card */
+.card-container {
+    opacity: 1;
+    display: none;
+    z-index: 1000;
 }

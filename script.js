@@ -52,6 +52,8 @@ volumeToggle.addEventListener('change', function () {
 const tooltipContainer = document.querySelector('.tooltip-container');
 const matrixContainer = document.querySelector('.matrix-container');
 const volumeContainer = document.querySelector('.container');
+const cardContainer = document.querySelector('.card-container');
+
 
 tooltipContainer.addEventListener('click', () => {
 
@@ -80,7 +82,10 @@ tooltipContainer.addEventListener('click', () => {
 
         tooltipContainer.style.display = 'none';
 
+        cardContainer.style.display = 'flex';
+
     }, 3000);
+
 });
 
 /* Fireworks Effect */
