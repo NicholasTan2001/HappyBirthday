@@ -15,6 +15,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
+    opacity: 0;
+    display: none;
 }
 
 .matrix-pattern {
@@ -177,6 +179,7 @@ body {
     cursor: pointer;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.151);
     position: relative;
+    animation: rot 2s infinite ease;
     transition: transform 0.3s ease;
 }
 
@@ -203,7 +206,7 @@ body {
 .tooltip-container .text {
     color: rgb(32, 30, 30);
     font-weight: bold;
-    font-size: 40px;
+    font-size: 60px;
 }
 
 .tooltip {
@@ -260,14 +263,59 @@ body {
     transition-duration: 0.3s;
 }
 
+@keyframes rot {
+    0% {
+        transform: rotateX(-15deg) translateY(0px);
+    }
+
+    50% {
+        transform: rotateX(-15deg) translateY(-20px);
+    }
+
+    100% {
+        transform: rotateX(-15deg) translateY(0px);
+    }
+}
+
+
 /* Fade out */
 .fade-out {
     opacity: 0;
-    transition: opacity 1s ease;
+    transition: opacity 2s ease;
 }
 
 /* Fade in */
 .fade-in {
     opacity: 1;
-    transition: opacity 1s ease;
+    transition: opacity 2s ease;
+}
+
+/* Fireworks */
+.fireworks {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.spark {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff, transparent);
+    animation: explode 2s ease-out forwards;
+}
+
+@keyframes explode {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--x), var(--y)) scale(0);
+        opacity: 0;
+    }
 }

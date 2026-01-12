@@ -48,7 +48,7 @@ volumeToggle.addEventListener('change', function () {
     }
 });
 
-/* Main Controller */
+/* Mail Controller */
 const tooltipContainer = document.querySelector('.tooltip-container');
 const matrixContainer = document.querySelector('.matrix-container');
 
@@ -58,12 +58,48 @@ tooltipContainer.addEventListener('click', () => {
 
     audio.play();
 
-    tooltipContainer.classList.add('fade-out');
-    matrixContainer.classList.remove('hidden');
+    createFireworks();
 
-    matrixContainer.classList.add('fade-in');
+    tooltipContainer.classList.add('fade-out');
+
+    matrixContainer.style.display = 'block';
 
     setTimeout(() => {
-        tooltipContainer.style.display = 'none';
+
+        matrixContainer.classList.add('fade-in');
+
     }, 1000);
+
+
+    setTimeout(() => {
+
+        tooltipContainer.style.display = 'none';
+
+    }, 2000);
 });
+
+/* Fireworks Effect */
+function createFireworks() {
+    const fireworks = document.querySelector('.fireworks');
+    fireworks.innerHTML = '';
+
+    for (let i = 0; i < 300; i++) {
+        const spark = document.createElement('div');
+        spark.classList.add('spark');
+
+        const angle = Math.random() * 2 * Math.PI;
+        const distance = Math.random() * 500;
+
+        spark.style.setProperty('--x', `${Math.cos(angle) * distance}px`);
+        spark.style.setProperty('--y', `${Math.sin(angle) * distance}px`);
+        spark.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+
+        fireworks.appendChild(spark);
+    }
+
+    // Remove after animation (once)
+    setTimeout(() => {
+        fireworks.innerHTML = '';
+    }, 1000);
+}
+
