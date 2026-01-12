@@ -326,4 +326,5 @@ body {
     opacity: 1;
     display: none;
     z-index: 1000;
+    animation: rot 2s infinite ease;
 }
