@@ -54,7 +54,6 @@ const matrixContainer = document.querySelector('.matrix-container');
 const volumeContainer = document.querySelector('.container');
 const cardContainer = document.querySelector('.card-container');
 
-
 tooltipContainer.addEventListener('click', () => {
 
     volumeToggle.checked = false;
@@ -85,12 +84,20 @@ tooltipContainer.addEventListener('click', () => {
         cardContainer.style.display = 'flex';
 
         setInterval(() => {
+
             spawnRandomFireworks();
+
+        }, 700);
+
+        setTimeout(() => {
+
+            cardContainer.classList.add('pop-out');
+
         }, 1000);
 
         setTimeout(() => {
 
-            spawnNextMessage()
+            spawnNextMessage();
 
         }, 2000);
 
@@ -156,7 +163,6 @@ function spawnRandomFireworks() {
     }, 1500);
 }
 
-
 /* Cards Spawn */
 const messages = [
     "生日快乐 🎂",
@@ -189,6 +195,7 @@ const messages = [
 ];
 
 const template = document.getElementById('card-template');
+const cardContainers = document.querySelector('.card-containers');
 const spawnInterval = 1000;
 let spawnIndex = 0;
 const spawnedCards = [];
@@ -201,18 +208,22 @@ function heart(t) {
 
 function spawnNextMessage() {
     if (spawnIndex >= messages.length) {
+
         setTimeout(() => {
 
-            hideCardsDescending();
+            fadeOutAllCards();
 
         }, 2000);
 
         return;
+
     }
 
     const card = template.cloneNode(true);
     card.id = '';
     card.classList.remove('hidden');
+
+    cardContainers.classList.add('pop-out');
 
     const p = card.querySelector('p');
     p.textContent = messages[spawnIndex];
@@ -243,38 +254,20 @@ function spawnNextMessage() {
     setTimeout(spawnNextMessage, spawnInterval);
 }
 
-
-function hideCardsDescending() {
-    let i = spawnedCards.length - 1;
-
-    function hideNext() {
-        if (i < 0) {
-
-            setTimeout(() => {
-
-                cardContainer.style.display = 'none';
-
-            }, 1500);
-
-            return;
-        };
-
-        const card = spawnedCards[i];
-        card.style.opacity = '0';
-        card.style.transform = 'scale(0.8) translateY(20px)';
-
+/* Cards Fade Out */
+function fadeOutAllCards() {
+    spawnedCards.forEach((card, index) => {
         setTimeout(() => {
-            card.remove();
-        }, 1000);
+            card.classList.add('fade-out-card');
 
-        i--;
-        setTimeout(hideNext, 150);
-    }
+            card.addEventListener('animationend', () => {
+                card.remove();
+            }, { once: true });
 
-    hideNext();
+        }, index * 300);
+    });
+
+    cardContainer.style.display = 'none';
+    cardContainers.classList.add('fade-out');
 }
-
-
-
-
 

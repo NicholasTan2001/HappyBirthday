@@ -323,8 +323,55 @@ body {
 
 /* Card */
 .card-container {
-    opacity: 1;
+    opacity: 0;
     display: none;
     z-index: 1000;
-    animation: rot 2s infinite ease;
+}
+
+/* Cards */
+.card-containers {
+    opacity: 0;
+    display: flex;
+    z-index: 1000;
+}
+
+/* .Pop Out */
+.pop-out {
+    opacity: 0;
+    transform: scale(0.6);
+    animation:
+        popOut 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+        rot 2s infinite ease;
+}
+
+@keyframes popOut {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+.bigFireworks {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    pointer-events: none;
+    z-index: 10000;
+}
+
+.fade-out-card {
+    animation: cardFadeOut 0.6s ease forwards;
+}
+
+@keyframes cardFadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.6);
+    }
 }
