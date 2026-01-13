@@ -189,7 +189,7 @@ const messages = [
 ];
 
 const template = document.getElementById('card-template');
-const spawnInterval = 1;
+const spawnInterval = 1000;
 let spawnIndex = 0;
 const spawnedCards = [];
 
@@ -254,7 +254,7 @@ function hideCardsDescending() {
 
                 cardContainer.style.display = 'none';
 
-            }, 2000);
+            }, 1500);
 
             return;
         };
