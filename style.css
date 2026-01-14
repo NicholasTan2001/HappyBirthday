@@ -279,16 +279,47 @@ body {
     }
 }
 
-/* Fade out */
+/* Fade Out */
 .fade-out {
-    opacity: 0;
-    transition: opacity 3s ease;
+    animation: fadeOutAnim 3s forwards;
 }
 
-/* Fade in */
+@keyframes fadeOutAnim {
+    0% {
+        opacity: 1;
+    }
+
+    99% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+/* Fade In */
 .fade-in {
     opacity: 1;
     transition: opacity 2s ease;
+}
+
+/* Fade In 2.0 */
+.fade-in-2 {
+    animation: fadeInAnim 2s forwards;
+}
+
+@keyframes fadeInAnim {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Fireworks */
@@ -335,9 +366,17 @@ body {
     z-index: 1000;
 }
 
+/* Cards */
+.card-cake-container {
+    opacity: 0;
+    display: none;
+    z-index: 1000;
+}
+
 /* .Pop Out */
 .pop-out {
     opacity: 0;
+    display: flex;
     transform: scale(0.6);
     animation:
         popOut 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
@@ -347,6 +386,7 @@ body {
 @keyframes popOut {
     to {
         opacity: 1;
+        display: flex;
         transform: scale(1);
     }
 }
@@ -364,6 +404,160 @@ body {
 
     to {
         opacity: 0;
+        display: none;
         transform: scale(0.6);
     }
+}
+
+/* .Pop Out Card 2.0*/
+.pop-out-up {
+    opacity: 0;
+    display: flex;
+    transform: translateY(50px);
+    animation:
+        popOutUp 10s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+        rot 2s infinite ease;
+}
+
+@keyframes popOutUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.6);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Sakura Container */
+.sakura-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.sakura {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: radial-gradient(circle at 30% 30%, #ffc0cb 50%, transparent 70%);
+    border-radius: 50% 50% 50% 50%;
+    opacity: 0.9;
+    transform: rotate(0deg);
+    animation: fallSakura linear forwards;
+}
+
+@keyframes fallSakura {
+    0% {
+        transform: translateY(-50px) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Wicks */
+.wick {
+    cursor: pointer;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.wick.hidden {
+    opacity: 0;
+    transform: scaleY(0);
+    pointer-events: none;
+}
+
+/* Big Fireworks */
+.big-fireworks {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    pointer-events: none;
+    z-index: 5000;
+}
+
+.big-sparks {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff, transparent);
+    animation: bigExplode 2s ease-out forwards;
+}
+
+@keyframes bigExplode {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--x), var(--y)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Credit Button */
+.Btn {
+    opacity: 1;
+    display: flex;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    align-items: center;
+    justify-content: center;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    position: relative;
+    background: #9fddff;
+}
+
+.svgIcon {
+    transition-duration: 0.3s;
+}
+
+.svgIcon path {
+    fill: white;
+}
+
+.text-credit {
+    position: absolute;
+    color: rgb(255, 255, 255);
+    width: 120px;
+    font-weight: 600;
+    opacity: 0;
+    transition-duration: 0.4s;
+}
+
+.Btn:hover {
+    width: 110px;
+    transition-duration: 0.4s;
+    border-radius: 30px;
+}
+
+.Btn:hover .text-credit {
+    opacity: 1;
+    transition-duration: 0.4s;
+}
+
+.Btn:hover .svgIcon {
+    opacity: 0;
+    transition-duration: 0.3s;
+}
+
+.restart-button-style {
+    opacity: 0;
+    display: flex;
 }

@@ -196,6 +196,7 @@ const messages = [
 
 const template = document.getElementById('card-template');
 const cardContainers = document.querySelector('.card-containers');
+const cardCakeContainer = document.querySelector('.card-cake-container');
 const spawnInterval = 1000;
 let spawnIndex = 0;
 const spawnedCards = [];
@@ -271,6 +272,20 @@ function fadeOutAllCards() {
 
                     cardContainer.classList.add('fade-out-card');
 
+                    setTimeout(() => {
+
+                        cardCakeContainer.classList.remove('hidden');
+
+                        cardCakeContainer.classList.add('pop-out-up');
+
+                        setInterval(() => {
+
+                            createSakuraPetal();
+
+                        }, 100);
+
+                    }, 2000);
+
                 }, 2000);
                 return;
             }
@@ -285,6 +300,83 @@ function fadeOutAllCards() {
     });
 }
 
+/* Sakura Petals */
+const sakuraContainer = document.querySelector('.sakura-container');
+
+function createSakuraPetal() {
+    const petal = document.createElement('div');
+    petal.classList.add('sakura');
+
+    petal.style.left = `${Math.random() * window.innerWidth}px`;
+    const size = 10 + Math.random() * 20;
+    petal.style.width = `${size}px`;
+    petal.style.height = `${size}px`;
+
+    const duration = 5 + Math.random() * 5;
+    petal.style.animationDuration = `${duration}s`;
+
+    sakuraContainer.appendChild(petal);
+
+    setTimeout(() => {
+        petal.remove();
+    }, duration * 1000);
+}
+
+/* Wicks */
+const wicks = document.querySelectorAll('.wick');
+const restartButton = document.getElementById('restart-button');
+const restartButtonStyle = document.querySelector('.restart-button-style');
+let remainingWicks = wicks.length;
+let fireworksPlayed = false;
+
+wicks.forEach(wick => {
+    wick.addEventListener('click', () => {
+
+        if (wick.classList.contains('hidden')) return;
+
+        wick.classList.add('hidden');
+        remainingWicks--;
+
+        if (remainingWicks === 0 && !fireworksPlayed) {
+            fireworksPlayed = true;
+            createBigFireworks();
+
+            setTimeout(() => {
+                restartButtonStyle.classList.add('fade-in-2');
+            }, 2000);
+
+        }
+    });
+});
 
 
+/* Big Fireworks Effect */
+function createBigFireworks() {
+    const bigFireworks = document.querySelector('.big-fireworks');
+    bigFireworks.innerHTML = '';
 
+    for (let i = 0; i < 250; i++) {
+        const spark = document.createElement('div');
+        spark.classList.add('big-sparks');
+
+        const angle = Math.random() * 2 * Math.PI;
+        const distance = Math.random() * 800;
+
+        spark.style.setProperty('--x', `${Math.cos(angle) * distance}px`);
+        spark.style.setProperty('--y', `${Math.sin(angle) * distance}px`);
+        spark.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+
+        bigFireworks.appendChild(spark);
+    }
+
+    setTimeout(() => {
+        bigFireworks.innerHTML = '';
+    }, 5000);
+}
+
+/* Restart */
+function restartWebsite() {
+    window.location.reload();
+}
+
+restartButton.addEventListener('click', restartWebsite);
