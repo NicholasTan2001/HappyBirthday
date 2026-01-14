@@ -520,9 +520,10 @@ body {
     justify-content: center;
     transition-duration: 0.4s;
     cursor: pointer;
-    position: relative;
+    position: fixed;
     background: #9fddff;
-    z-index: 100000;
+    z-index: 9999;
+    pointer-events: auto;
 }
 
 .svgIcon {
