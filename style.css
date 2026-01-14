@@ -522,6 +522,7 @@ body {
     cursor: pointer;
     position: relative;
     background: #9fddff;
+    z-index: 1000;
 }
 
 .svgIcon {
@@ -560,10 +561,4 @@ body {
 .restart-button-style {
     opacity: 0;
     display: flex;
-    pointer-events: none;
-}
-
-.restart-button-style.show {
-    opacity: 1;
-    pointer-events: auto;
 }
