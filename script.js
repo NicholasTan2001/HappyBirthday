@@ -99,7 +99,7 @@ tooltipContainer.addEventListener('click', () => {
 
             spawnNextMessage();
 
-        }, 2000);
+        }, 3000);
 
     }, 3000);
 
@@ -256,18 +256,35 @@ function spawnNextMessage() {
 
 /* Cards Fade Out */
 function fadeOutAllCards() {
-    spawnedCards.forEach((card, index) => {
+    const cards = [...spawnedCards].reverse();
+    const lastIndex = cards.length - 1;
+
+    cards.forEach((card, index) => {
         setTimeout(() => {
+
+            if (index === lastIndex) {
+                card.remove();
+
+                setTimeout(() => {
+
+                    cardContainer.classList.remove('pop-out');
+
+                    cardContainer.classList.add('fade-out-card');
+
+                }, 2000);
+                return;
+            }
+
             card.classList.add('fade-out-card');
 
             card.addEventListener('animationend', () => {
                 card.remove();
             }, { once: true });
 
-        }, index * 300);
+        }, index * 500);
     });
-
-    cardContainer.style.display = 'none';
-    cardContainers.classList.add('fade-out');
 }
+
+
+
 

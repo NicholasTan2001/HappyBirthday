@@ -351,15 +351,7 @@ body {
     }
 }
 
-
-.bigFireworks {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    pointer-events: none;
-    z-index: 10000;
-}
-
+/* .Fade Out Card */
 .fade-out-card {
     animation: cardFadeOut 0.6s ease forwards;
 }
