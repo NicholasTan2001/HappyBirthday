@@ -561,6 +561,6 @@ body {
 
 .restart-button-style {
     opacity: 0;
-    display: flex;
+    display: none;
     pointer-events: none;
 }

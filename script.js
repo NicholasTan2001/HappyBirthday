@@ -342,6 +342,8 @@ wicks.forEach(wick => {
             createBigFireworks();
 
             setTimeout(() => {
+                restartButtonStyle.style.display = 'flex';
+
                 restartButtonStyle.classList.add('fade-in-2');
             }, 2000);
 
