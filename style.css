@@ -522,7 +522,7 @@ body {
     cursor: pointer;
     position: relative;
     background: #9fddff;
-    z-index: 1000;
+    z-index: 100000;
 }
 
 .svgIcon {
