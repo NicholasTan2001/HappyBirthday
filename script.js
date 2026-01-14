@@ -343,6 +343,8 @@ wicks.forEach(wick => {
 
             setTimeout(() => {
                 restartButtonStyle.classList.add('fade-in-2');
+
+                restartButtonStyle.classList.add('show');
             }, 2000);
 
         }

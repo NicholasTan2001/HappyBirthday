@@ -560,4 +560,10 @@ body {
 .restart-button-style {
     opacity: 0;
     display: flex;
+    pointer-events: none;
+}
+
+.restart-button-style.show {
+    opacity: 1;
+    pointer-events: auto;
 }
