@@ -326,6 +326,7 @@ function createSakuraPetal() {
 const wicks = document.querySelectorAll('.wick');
 const restartButton = document.getElementById('restart-button');
 const restartButtonStyle = document.querySelector('.restart-button-style');
+const wishText = document.querySelector('.wish');
 let remainingWicks = wicks.length;
 let fireworksPlayed = false;
 
@@ -344,13 +345,14 @@ wicks.forEach(wick => {
             setTimeout(() => {
                 restartButtonStyle.style.display = 'flex';
 
+                typeEffect('生日快乐 !! ❤');
+
                 restartButtonStyle.classList.add('fade-in-2');
             }, 2000);
 
         }
     });
 });
-
 
 /* Big Fireworks Effect */
 function createBigFireworks() {
@@ -382,3 +384,34 @@ function restartWebsite() {
 }
 
 restartButton.addEventListener('click', restartWebsite);
+
+/* Wish Text */
+function typeEffect(newText) {
+    const oldText = wishText.textContent;
+    let index = oldText.length;
+
+    wishText.classList.add('typing');
+
+    const deleteInterval = setInterval(() => {
+        if (index > 0) {
+            wishText.textContent = oldText.substring(0, index - 1);
+            index--;
+        } else {
+            clearInterval(deleteInterval);
+
+            setTimeout(() => {
+                let typeIndex = 0;
+
+                const typeInterval = setInterval(() => {
+                    if (typeIndex < newText.length) {
+                        wishText.textContent += newText.charAt(typeIndex);
+                        typeIndex++;
+                    } else {
+                        clearInterval(typeInterval);
+                        wishText.classList.remove('typing');
+                    }
+                }, 200);
+            }, 400);
+        }
+    }, 100);
+}
